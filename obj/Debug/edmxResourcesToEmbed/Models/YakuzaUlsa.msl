@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="YakuzaAppDBModelStoreContainer" CdmEntityContainer="YakuzaAppDBEntities">
+    <EntitySetMapping Name="Calificacion">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Calificacion">
+        <MappingFragment StoreEntitySet="Calificacion">
+          <ScalarProperty Name="idCalificacion" ColumnName="idCalificacion" />
+          <ScalarProperty Name="puntajeCalificacion" ColumnName="puntajeCalificacion" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idPlatillo" ColumnName="idPlatillo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrito">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Carrito">
+        <MappingFragment StoreEntitySet="Carrito">
+          <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="totalCarrito" ColumnName="totalCarrito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatalogoCarrito">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.CatalogoCarrito">
+        <MappingFragment StoreEntitySet="CatalogoCarrito">
+          <ScalarProperty Name="idCatalogo" ColumnName="idCatalogo" />
+          <ScalarProperty Name="cantidadCatalogo" ColumnName="cantidadCatalogo" />
+          <ScalarProperty Name="subTotalCatalogo" ColumnName="subTotalCatalogo" />
+          <ScalarProperty Name="idPlatillo" ColumnName="idPlatillo" />
+          <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaPlatillo">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.CategoriaPlatillo">
+        <MappingFragment StoreEntitySet="CategoriaPlatillo">
+          <ScalarProperty Name="idCategoriaPlatillo" ColumnName="idCategoriaPlatillo" />
+          <ScalarProperty Name="nombreCategoriaPlatillo" ColumnName="nombreCategoriaPlatillo" />
+          <ScalarProperty Name="descripcionCategoriaPlatillo" ColumnName="descripcionCategoriaPlatillo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comentario">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Comentario">
+        <MappingFragment StoreEntitySet="Comentario">
+          <ScalarProperty Name="idComentario" ColumnName="idComentario" />
+          <ScalarProperty Name="idCalificacion" ColumnName="idCalificacion" />
+          <ScalarProperty Name="descripcionComentario" ColumnName="descripcionComentario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consumidor">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Consumidor">
+        <MappingFragment StoreEntitySet="Consumidor">
+          <ScalarProperty Name="idConsumidor" ColumnName="idConsumidor" />
+          <ScalarProperty Name="idMembresia" ColumnName="idMembresia" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direccion">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Direccion">
+        <MappingFragment StoreEntitySet="Direccion">
+          <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+          <ScalarProperty Name="municipioDireccion" ColumnName="municipioDireccion" />
+          <ScalarProperty Name="coloniaDireccion" ColumnName="coloniaDireccion" />
+          <ScalarProperty Name="calleDireccion" ColumnName="calleDireccion" />
+          <ScalarProperty Name="numeroExterior" ColumnName="numeroExterior" />
+          <ScalarProperty Name="numeroInterior" ColumnName="numeroInterior" />
+          <ScalarProperty Name="latitudDirecicon" ColumnName="latitudDirecicon" />
+          <ScalarProperty Name="longitudDireccion" ColumnName="longitudDireccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Membresia">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Membresia">
+        <MappingFragment StoreEntitySet="Membresia">
+          <ScalarProperty Name="idMembresia" ColumnName="idMembresia" />
+          <ScalarProperty Name="descripcionMembresia" ColumnName="descripcionMembresia" />
+          <ScalarProperty Name="descuentoMembresia" ColumnName="descuentoMembresia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pais">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Pais">
+        <MappingFragment StoreEntitySet="Pais">
+          <ScalarProperty Name="idPais" ColumnName="idPais" />
+          <ScalarProperty Name="nombrePais" ColumnName="nombrePais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Platillo">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Platillo">
+        <MappingFragment StoreEntitySet="Platillo">
+          <ScalarProperty Name="idPlatillo" ColumnName="idPlatillo" />
+          <ScalarProperty Name="idPais" ColumnName="idPais" />
+          <ScalarProperty Name="nombrePlatillo" ColumnName="nombrePlatillo" />
+          <ScalarProperty Name="descripcionPlatillo" ColumnName="descripcionPlatillo" />
+          <ScalarProperty Name="calificacionPlatillo" ColumnName="calificacionPlatillo" />
+          <ScalarProperty Name="numeroVisitas" ColumnName="numeroVisitas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Precio">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Precio">
+        <MappingFragment StoreEntitySet="Precio">
+          <ScalarProperty Name="idPrecio" ColumnName="idPrecio" />
+          <ScalarProperty Name="idPlatillo" ColumnName="idPlatillo" />
+          <ScalarProperty Name="descripcionPrecio" ColumnName="descripcionPrecio" />
+          <ScalarProperty Name="cantidadPrecio" ColumnName="cantidadPrecio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sucursal">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Sucursal">
+        <MappingFragment StoreEntitySet="Sucursal">
+          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+          <ScalarProperty Name="nombreSucursal" ColumnName="nombreSucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarjeta">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Tarjeta">
+        <MappingFragment StoreEntitySet="Tarjeta">
+          <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="idConsumidor" ColumnName="idConsumidor" />
+          <ScalarProperty Name="numeroTarjeta" ColumnName="numeroTarjeta" />
+          <ScalarProperty Name="bancoTarjeta" ColumnName="bancoTarjeta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDeTarjeta">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.TipoDeTarjeta">
+        <MappingFragment StoreEntitySet="TipoDeTarjeta">
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="descripcionTipo" ColumnName="descripcionTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDeUsuario">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.TipoDeUsuario">
+        <MappingFragment StoreEntitySet="TipoDeUsuario">
+          <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+          <ScalarProperty Name="descripcionTipoUsuario" ColumnName="descripcionTipoUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="YakuzaAppDBModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="apellidoPaternoUsuario" ColumnName="apellidoPaternoUsuario" />
+          <ScalarProperty Name="apellidoMaternoUsuario" ColumnName="apellidoMaternoUsuario" />
+          <ScalarProperty Name="fechaNacimientoUsuario" ColumnName="fechaNacimientoUsuario" />
+          <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+          <ScalarProperty Name="passwordUsuario" ColumnName="passwordUsuario" />
+          <ScalarProperty Name="nickNameUsuario" ColumnName="nickNameUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PlatilloHasCategorias" TypeName="YakuzaAppDBModel.PlatilloHasCategorias" StoreEntitySet="PlatilloHasCategorias">
+      <EndProperty Name="CategoriaPlatillo">
+        <ScalarProperty Name="idCategoriaPlatillo" ColumnName="idCategoriaPlatillo" />
+      </EndProperty>
+      <EndProperty Name="Platillo">
+        <ScalarProperty Name="idPlatillo" ColumnName="idPlatillo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SucursalHasDireccion" TypeName="YakuzaAppDBModel.SucursalHasDireccion" StoreEntitySet="SucursalHasDireccion">
+      <EndProperty Name="Direccion">
+        <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+      </EndProperty>
+      <EndProperty Name="Sucursal">
+        <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsuarioHasDireccion" TypeName="YakuzaAppDBModel.UsuarioHasDireccion" StoreEntitySet="UsuarioHasDireccion">
+      <EndProperty Name="Direccion">
+        <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+      </EndProperty>
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

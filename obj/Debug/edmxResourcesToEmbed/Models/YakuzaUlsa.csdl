@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YakuzaAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Calificacion">
+    <Key>
+      <PropertyRef Name="idCalificacion" />
+    </Key>
+    <Property Name="idCalificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="puntajeCalificacion" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="idPlatillo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Platillo" Relationship="Self.FK__Calificac__idPla__3E52440B" FromRole="Calificacion" ToRole="Platillo" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Calificac__idUsu__37A5467C" FromRole="Calificacion" ToRole="Usuario" />
+    <NavigationProperty Name="Comentario" Relationship="Self.FK__Comentari__idCal__4222D4EF" FromRole="Calificacion" ToRole="Comentario" />
+  </EntityType>
+  <EntityType Name="Carrito">
+    <Key>
+      <PropertyRef Name="idCarrito" />
+    </Key>
+    <Property Name="idCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <Property Name="totalCarrito" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Carrito__idUsuar__36B12243" FromRole="Carrito" ToRole="Usuario" />
+    <NavigationProperty Name="CatalogoCarrito" Relationship="Self.FK__CatalogoC__idCar__6E01572D" FromRole="Carrito" ToRole="CatalogoCarrito" />
+  </EntityType>
+  <EntityType Name="CatalogoCarrito">
+    <Key>
+      <PropertyRef Name="idCatalogo" />
+    </Key>
+    <Property Name="idCatalogo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidadCatalogo" Type="Int32" Nullable="false" />
+    <Property Name="subTotalCatalogo" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="idPlatillo" Type="Int32" Nullable="false" />
+    <Property Name="idCarrito" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__CatalogoC__idCar__6E01572D" FromRole="CatalogoCarrito" ToRole="Carrito" />
+    <NavigationProperty Name="Platillo" Relationship="Self.FK__CatalogoC__idPla__3D5E1FD2" FromRole="CatalogoCarrito" ToRole="Platillo" />
+  </EntityType>
+  <EntityType Name="CategoriaPlatillo">
+    <Key>
+      <PropertyRef Name="idCategoriaPlatillo" />
+    </Key>
+    <Property Name="idCategoriaPlatillo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreCategoriaPlatillo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcionCategoriaPlatillo" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Platillo" Relationship="Self.PlatilloHasCategorias" FromRole="CategoriaPlatillo" ToRole="Platillo" />
+  </EntityType>
+  <EntityType Name="Comentario">
+    <Key>
+      <PropertyRef Name="idComentario" />
+    </Key>
+    <Property Name="idComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCalificacion" Type="Int32" Nullable="false" />
+    <Property Name="descripcionComentario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Calificacion" Relationship="Self.FK__Comentari__idCal__4222D4EF" FromRole="Comentario" ToRole="Calificacion" />
+  </EntityType>
+  <EntityType Name="Consumidor">
+    <Key>
+      <PropertyRef Name="idConsumidor" />
+    </Key>
+    <Property Name="idConsumidor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idMembresia" Type="Int32" Nullable="false" />
+    <Property Name="idUsuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Membresia" Relationship="Self.FK__Consumido__idMem__440B1D61" FromRole="Consumidor" ToRole="Membresia" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Consumido__idUsu__38996AB5" FromRole="Consumidor" ToRole="Usuario" />
+    <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Tarjeta__idConsu__44FF419A" FromRole="Consumidor" ToRole="Tarjeta" />
+  </EntityType>
+  <EntityType Name="Direccion">
+    <Key>
+      <PropertyRef Name="idDireccion" />
+    </Key>
+    <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="municipioDireccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="coloniaDireccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="calleDireccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numeroExterior" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numeroInterior" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="latitudDirecicon" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="longitudDireccion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Sucursal" Relationship="Self.SucursalHasDireccion" FromRole="Direccion" ToRole="Sucursal" />
+    <NavigationProperty Name="Usuario" Relationship="Self.UsuarioHasDireccion" FromRole="Direccion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Membresia">
+    <Key>
+      <PropertyRef Name="idMembresia" />
+    </Key>
+    <Property Name="idMembresia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcionMembresia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descuentoMembresia" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Consumidor" Relationship="Self.FK__Consumido__idMem__440B1D61" FromRole="Membresia" ToRole="Consumidor" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="idPais" />
+    </Key>
+    <Property Name="idPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombrePais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Platillo" Relationship="Self.FK__Platillo__idPais__403A8C7D" FromRole="Pais" ToRole="Platillo" />
+  </EntityType>
+  <EntityType Name="Platillo">
+    <Key>
+      <PropertyRef Name="idPlatillo" />
+    </Key>
+    <Property Name="idPlatillo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPais" Type="Int32" Nullable="false" />
+    <Property Name="nombrePlatillo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcionPlatillo" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="calificacionPlatillo" Type="Double" Nullable="false" />
+    <Property Name="numeroVisitas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Calificacion" Relationship="Self.FK__Calificac__idPla__3E52440B" FromRole="Platillo" ToRole="Calificacion" />
+    <NavigationProperty Name="CatalogoCarrito" Relationship="Self.FK__CatalogoC__idPla__3D5E1FD2" FromRole="Platillo" ToRole="CatalogoCarrito" />
+    <NavigationProperty Name="Pais" Relationship="Self.FK__Platillo__idPais__403A8C7D" FromRole="Platillo" ToRole="Pais" />
+    <NavigationProperty Name="Precio" Relationship="Self.FK__Precio__idPlatil__3C69FB99" FromRole="Platillo" ToRole="Precio" />
+    <NavigationProperty Name="CategoriaPlatillo" Relationship="Self.PlatilloHasCategorias" FromRole="Platillo" ToRole="CategoriaPlatillo" />
+  </EntityType>
+  <EntityType Name="Precio">
+    <Key>
+      <PropertyRef Name="idPrecio" />
+    </Key>
+    <Property Name="idPrecio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlatillo" Type="Int32" Nullable="false" />
+    <Property Name="descripcionPrecio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidadPrecio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Platillo" Relationship="Self.FK__Precio__idPlatil__3C69FB99" FromRole="Precio" ToRole="Platillo" />
+  </EntityType>
+  <EntityType Name="Sucursal">
+    <Key>
+      <PropertyRef Name="idSucursal" />
+    </Key>
+    <Property Name="idSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreSucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Direccion" Relationship="Self.SucursalHasDireccion" FromRole="Sucursal" ToRole="Direccion" />
+  </EntityType>
+  <EntityType Name="Tarjeta">
+    <Key>
+      <PropertyRef Name="idTarjeta" />
+    </Key>
+    <Property Name="idTarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipo" Type="Int32" Nullable="false" />
+    <Property Name="idConsumidor" Type="Int32" Nullable="false" />
+    <Property Name="numeroTarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bancoTarjeta" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Consumidor" Relationship="Self.FK__Tarjeta__idConsu__44FF419A" FromRole="Tarjeta" ToRole="Consumidor" />
+    <NavigationProperty Name="TipoDeTarjeta" Relationship="Self.FK__Tarjeta__idTipo__4316F928" FromRole="Tarjeta" ToRole="TipoDeTarjeta" />
+  </EntityType>
+  <EntityType Name="TipoDeTarjeta">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcionTipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Tarjeta__idTipo__4316F928" FromRole="TipoDeTarjeta" ToRole="Tarjeta" />
+  </EntityType>
+  <EntityType Name="TipoDeUsuario">
+    <Key>
+      <PropertyRef Name="idTipoUsuario" />
+    </Key>
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcionTipoUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__idTipoU__34C8D9D1" FromRole="TipoDeUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="nombreUsuario" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidoPaternoUsuario" Type="String" MaxLength="35" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="apellidoMaternoUsuario" Type="String" MaxLength="35" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechaNacimientoUsuario" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="correoUsuario" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="passwordUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nickNameUsuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Calificacion" Relationship="Self.FK__Calificac__idUsu__37A5467C" FromRole="Usuario" ToRole="Calificacion" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__Carrito__idUsuar__36B12243" FromRole="Usuario" ToRole="Carrito" />
+    <NavigationProperty Name="Consumidor" Relationship="Self.FK__Consumido__idUsu__38996AB5" FromRole="Usuario" ToRole="Consumidor" />
+    <NavigationProperty Name="TipoDeUsuario" Relationship="Self.FK__Usuario__idTipoU__34C8D9D1" FromRole="Usuario" ToRole="TipoDeUsuario" />
+    <NavigationProperty Name="Direccion" Relationship="Self.UsuarioHasDireccion" FromRole="Usuario" ToRole="Direccion" />
+  </EntityType>
+  <Association Name="FK__Calificac__idPla__3E52440B">
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+    <End Role="Calificacion" Type="Self.Calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platillo">
+        <PropertyRef Name="idPlatillo" />
+      </Principal>
+      <Dependent Role="Calificacion">
+        <PropertyRef Name="idPlatillo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Calificac__idUsu__37A5467C">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Calificacion" Type="Self.Calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Calificacion">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comentari__idCal__4222D4EF">
+    <End Role="Calificacion" Type="Self.Calificacion" Multiplicity="1" />
+    <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Calificacion">
+        <PropertyRef Name="idCalificacion" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="idCalificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Carrito__idUsuar__36B12243">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Carrito">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CatalogoC__idCar__6E01572D">
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="1" />
+    <End Role="CatalogoCarrito" Type="Self.CatalogoCarrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrito">
+        <PropertyRef Name="idCarrito" />
+      </Principal>
+      <Dependent Role="CatalogoCarrito">
+        <PropertyRef Name="idCarrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CatalogoC__idPla__3D5E1FD2">
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+    <End Role="CatalogoCarrito" Type="Self.CatalogoCarrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platillo">
+        <PropertyRef Name="idPlatillo" />
+      </Principal>
+      <Dependent Role="CatalogoCarrito">
+        <PropertyRef Name="idPlatillo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Consumido__idMem__440B1D61">
+    <End Role="Membresia" Type="Self.Membresia" Multiplicity="1" />
+    <End Role="Consumidor" Type="Self.Consumidor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membresia">
+        <PropertyRef Name="idMembresia" />
+      </Principal>
+      <Dependent Role="Consumidor">
+        <PropertyRef Name="idMembresia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Consumido__idUsu__38996AB5">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Consumidor" Type="Self.Consumidor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Consumidor">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tarjeta__idConsu__44FF419A">
+    <End Role="Consumidor" Type="Self.Consumidor" Multiplicity="1" />
+    <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consumidor">
+        <PropertyRef Name="idConsumidor" />
+      </Principal>
+      <Dependent Role="Tarjeta">
+        <PropertyRef Name="idConsumidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Platillo__idPais__403A8C7D">
+    <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="idPais" />
+      </Principal>
+      <Dependent Role="Platillo">
+        <PropertyRef Name="idPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Precio__idPlatil__3C69FB99">
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+    <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platillo">
+        <PropertyRef Name="idPlatillo" />
+      </Principal>
+      <Dependent Role="Precio">
+        <PropertyRef Name="idPlatillo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tarjeta__idTipo__4316F928">
+    <End Role="TipoDeTarjeta" Type="Self.TipoDeTarjeta" Multiplicity="1" />
+    <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDeTarjeta">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="Tarjeta">
+        <PropertyRef Name="idTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__idTipoU__34C8D9D1">
+    <End Role="TipoDeUsuario" Type="Self.TipoDeUsuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDeUsuario">
+        <PropertyRef Name="idTipoUsuario" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlatilloHasCategorias">
+    <End Role="CategoriaPlatillo" Type="Self.CategoriaPlatillo" Multiplicity="*" />
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="*" />
+  </Association>
+  <Association Name="SucursalHasDireccion">
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+    <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
+  </Association>
+  <Association Name="UsuarioHasDireccion">
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="YakuzaAppDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Calificacion" EntityType="Self.Calificacion" />
+    <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+    <EntitySet Name="CatalogoCarrito" EntityType="Self.CatalogoCarrito" />
+    <EntitySet Name="CategoriaPlatillo" EntityType="Self.CategoriaPlatillo" />
+    <EntitySet Name="Comentario" EntityType="Self.Comentario" />
+    <EntitySet Name="Consumidor" EntityType="Self.Consumidor" />
+    <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+    <EntitySet Name="Membresia" EntityType="Self.Membresia" />
+    <EntitySet Name="Pais" EntityType="Self.Pais" />
+    <EntitySet Name="Platillo" EntityType="Self.Platillo" />
+    <EntitySet Name="Precio" EntityType="Self.Precio" />
+    <EntitySet Name="Sucursal" EntityType="Self.Sucursal" />
+    <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+    <EntitySet Name="TipoDeTarjeta" EntityType="Self.TipoDeTarjeta" />
+    <EntitySet Name="TipoDeUsuario" EntityType="Self.TipoDeUsuario" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__Calificac__idPla__3E52440B" Association="Self.FK__Calificac__idPla__3E52440B">
+      <End Role="Platillo" EntitySet="Platillo" />
+      <End Role="Calificacion" EntitySet="Calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Calificac__idUsu__37A5467C" Association="Self.FK__Calificac__idUsu__37A5467C">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Calificacion" EntitySet="Calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comentari__idCal__4222D4EF" Association="Self.FK__Comentari__idCal__4222D4EF">
+      <End Role="Calificacion" EntitySet="Calificacion" />
+      <End Role="Comentario" EntitySet="Comentario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Carrito__idUsuar__36B12243" Association="Self.FK__Carrito__idUsuar__36B12243">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CatalogoC__idCar__6E01572D" Association="Self.FK__CatalogoC__idCar__6E01572D">
+      <End Role="Carrito" EntitySet="Carrito" />
+      <End Role="CatalogoCarrito" EntitySet="CatalogoCarrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CatalogoC__idPla__3D5E1FD2" Association="Self.FK__CatalogoC__idPla__3D5E1FD2">
+      <End Role="Platillo" EntitySet="Platillo" />
+      <End Role="CatalogoCarrito" EntitySet="CatalogoCarrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Consumido__idMem__440B1D61" Association="Self.FK__Consumido__idMem__440B1D61">
+      <End Role="Membresia" EntitySet="Membresia" />
+      <End Role="Consumidor" EntitySet="Consumidor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Consumido__idUsu__38996AB5" Association="Self.FK__Consumido__idUsu__38996AB5">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Consumidor" EntitySet="Consumidor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tarjeta__idConsu__44FF419A" Association="Self.FK__Tarjeta__idConsu__44FF419A">
+      <End Role="Consumidor" EntitySet="Consumidor" />
+      <End Role="Tarjeta" EntitySet="Tarjeta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Platillo__idPais__403A8C7D" Association="Self.FK__Platillo__idPais__403A8C7D">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Platillo" EntitySet="Platillo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Precio__idPlatil__3C69FB99" Association="Self.FK__Precio__idPlatil__3C69FB99">
+      <End Role="Platillo" EntitySet="Platillo" />
+      <End Role="Precio" EntitySet="Precio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tarjeta__idTipo__4316F928" Association="Self.FK__Tarjeta__idTipo__4316F928">
+      <End Role="TipoDeTarjeta" EntitySet="TipoDeTarjeta" />
+      <End Role="Tarjeta" EntitySet="Tarjeta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__idTipoU__34C8D9D1" Association="Self.FK__Usuario__idTipoU__34C8D9D1">
+      <End Role="TipoDeUsuario" EntitySet="TipoDeUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="PlatilloHasCategorias" Association="Self.PlatilloHasCategorias">
+      <End Role="CategoriaPlatillo" EntitySet="CategoriaPlatillo" />
+      <End Role="Platillo" EntitySet="Platillo" />
+    </AssociationSet>
+    <AssociationSet Name="SucursalHasDireccion" Association="Self.SucursalHasDireccion">
+      <End Role="Direccion" EntitySet="Direccion" />
+      <End Role="Sucursal" EntitySet="Sucursal" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioHasDireccion" Association="Self.UsuarioHasDireccion">
+      <End Role="Direccion" EntitySet="Direccion" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
