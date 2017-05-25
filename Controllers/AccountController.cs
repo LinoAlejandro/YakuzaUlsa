@@ -17,6 +17,7 @@ namespace YakuzaUlsa.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private YakuzaAppDBEntities db = new YakuzaAppDBEntities();
 
         public AccountController()
         {
@@ -139,6 +140,7 @@ namespace YakuzaUlsa.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.idTipoUsuario = new SelectList(db.TipoDeUsuario, "idTipoUsuario", "descripcionTipoUsuario");
             return View();
         }
 
@@ -147,29 +149,37 @@ namespace YakuzaUlsa.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if (!UserUtilities.exists(usuario.nickNameUsuario))
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    if (UserUtilities.comparePasswords(usuario.passwordUsuario, "Limbo1"))
+                    {
+                        var user = new ApplicationUser { UserName = usuario.nickNameUsuario, Email = usuario.correoUsuario };
+                        var result = await UserManager.CreateAsync(user, usuario.passwordUsuario);
+                        if (result.Succeeded)
+                        {
+                            db.Usuario.Add(usuario);
+                            db.SaveChanges();
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        AddErrors(result);
+                        return View(usuario);
+                    } else
+                    {
+                        ModelState.AddModelError("confirmPassword", "Las contraseñas deben de coincidir");
+                    }
+                } else
+                {
+                    ModelState.AddModelError("nickNameUsuario", "Este Nick Name ya existe");
                 }
-                AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            ViewBag.idTipoUsuario = new SelectList(db.TipoDeUsuario, "idTipoUsuario", "descripcionTipoUsuario", usuario.idTipoUsuario);
+            return View(usuario);
         }
 
         //
